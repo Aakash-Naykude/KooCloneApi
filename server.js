@@ -1,3 +1,4 @@
+//require('dotenv').config()
 const app = require("./src/index");
 const connect = require("./src/configs/db");
 app.listen(process.env.PORT || 4000, async function () {

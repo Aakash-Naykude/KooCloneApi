@@ -2,15 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
-    postdata: { required: true, type: String },
-    // like: { required: true, type: Number },
-    username: { required: true, type: String },
-
-    userid: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      required: true,
-    },
+    postdata: { type: String },
+    // like: {  type: Number },
+    username: { type: String },
+    imageupload: { type: String },
+    // userid: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "user",
+    
+    // },
   },
   {
     versionKey: false,
