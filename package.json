@@ -1,0 +1,24 @@
+{
+  "name": "koocloneapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server":"nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aakash-Naykude/KooCloneApi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aakash-Naykude/KooCloneApi/issues"
+  },
+  "homepage": "https://github.com/Aakash-Naykude/KooCloneApi#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7"
+  }
+}
