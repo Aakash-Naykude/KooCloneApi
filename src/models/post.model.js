@@ -7,11 +7,13 @@ const userSchema = new Schema(
     name: { type: String },
     username: { type: String },
     imageupload: { type: String },
-    // userid: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "user",
-
-    // },
+    likes: { type: Number },
+    commentNo: { type: Number },
+    comments: [{ type: String }],
+    userid: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   {
     versionKey: false,

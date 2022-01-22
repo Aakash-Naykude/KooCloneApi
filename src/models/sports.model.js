@@ -16,4 +16,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = new model("user", userSchema);
+module.exports = new model("sports", userSchema);

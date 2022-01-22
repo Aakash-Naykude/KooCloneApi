@@ -21,4 +21,17 @@ router.post("/", async (req, res) => {
     return res.status(500).send({ message: err.message, status: "failed" });
   }
 });
+
+router.patch("/:id", async (req, res) => {
+  try {
+    const upuser = await Postdata.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+
+    return res.send(upuser);
+  } catch (err) {
+    return res.status(500).send({ message: err.message, status: "failed" });
+  }
+});
+
 module.exports = router;
