@@ -9,6 +9,7 @@ const userSchema = new Schema(
     profile_pic: { type: String },
     followers: { type: Number },
     following: { type: Number },
+    followingPeople: [{ type: String },],
   },
   {
     versionKey: false,
