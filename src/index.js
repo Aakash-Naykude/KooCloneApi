@@ -25,4 +25,7 @@ app.use("/upelections", upelectionController);
 const videosController = require("./controllers/videos.controller");
 app.use("/videos", videosController);
 
+const peopleController = require("./controllers/people.controller");
+app.use("/people", peopleController);
+
 module.exports = app;
