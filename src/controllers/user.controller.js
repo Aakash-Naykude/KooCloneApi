@@ -28,6 +28,7 @@ router.get("/email/:email", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   try {
+    console.log("user");
     console.log(req.params.id);
     const spuser = await Users.findById(req.params.id).lean().exec();
 
