@@ -1,16 +1,11 @@
 const express = require("express");
 const Postdata = require("../models/post.model");
 const router = express.Router();
-const redis = require("../configs/redis");
 router.get("/", async (req, res) => {
   try {
-    redis.get("userposts", async function (err, userposts) {
-      if (err) console.log(err);
-      if (userposts) return res.status(200).send(JSON.parse(userposts));
-      const Allusers = await Postdata.find().lean().exec();
-      redis.set("userposts", JSON.stringify(Allusers));
-      return res.status(200).send(JSON.stringify(Allusers));
-    });
+    const ucreate = await Postdata.find();
+
+    return res.status(201).send(ucreate);
   } catch (err) {
     return res.status(500).send({ message: err.message, status: "failed" });
   }
