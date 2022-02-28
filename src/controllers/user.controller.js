@@ -1,6 +1,7 @@
 const express = require("express");
 // const serverless = require("serverless-http");
-
+const fs = require("fs");
+const upload = require("../middleware/upload");
 // const connect = require("../config/db");
 // const mongoose = require('mongoose');
 const Users = require("../models/user.model");
@@ -28,8 +29,6 @@ router.get("/email/:email", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   try {
-    console.log("user");
-    console.log(req.params.id);
     const spuser = await Users.findById(req.params.id).lean().exec();
 
     return res.send(spuser);
@@ -48,19 +47,51 @@ router.post("/", async (req, res) => {
   }
 });
 
+// router.patch("/:id", upload.single("profile_pic"), async (req, res) => {
+//   try {
+//     const profpic = await Users.findByIdAndUpdate(
+//       req.params.id,
+//       {
+//         name: req.body.name,
+//         username: req.body.username,
+//         email: req.body.email,
+//         mobilenumber: req.body.mobilenumber,
+//         profile_pic: req.file.path,
+//       },
+//       {
+//         new: true,
+//       }
+//     )
+//       .lean()
+//       .exec();
+//       console.log(profpic);
+//     res.status(201).send(profpic);
+//   } catch (e) {
+//     res.status(500).json({ message: e.message, status: "Failed" });
+//   }
+// });
+
 router.patch("/:id", async (req, res) => {
   try {
-    const upuser = await Users.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-
-    return res.send(upuser);
-  } catch (err) {
-    return res.status(500).send({ message: err.message, status: "failed" });
+    const profpic = await Users.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        mobilenumber: req.body.mobilenumber,
+      },
+      {
+        new: true,
+      }
+    )
+      .lean()
+      .exec();
+    console.log(profpic);
+    res.status(201).send(profpic);
+  } catch (e) {
+    res.status(500).json({ message: e.message, status: "Failed" });
   }
 });
 
-// app.use(`/.netlify/functions/api`, router);
-
-// module.exports = app;
 module.exports = router;

@@ -1,23 +1,33 @@
-
+const path = require("path");
+//
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
 
-const storage = new GridFsStorage({
-    url: process.env.DB,
-    options: { useNewUrlParser: true, useUnifiedTopology: true },
-    file: (req, file) => {
-        const match = ["image/png", "image/jpeg"];
-
-        if (match.indexOf(file.mimetype) === -1) {
-            const filename = `${Date.now()}-any-name-${file.originalname}`;
-            return filename;
-        }
-
-        return {
-            bucketName: "photos",
-            filename: `${Date.now()}-any-name-${file.originalname}`,
-        };
-    },
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, path.join(__dirname, "./uploads"));
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
+  },
 });
 
-module.exports = multer({ storage });
+const fileFilter = (req, file, callback) => {
+  if (
+    file.mimetype === "image/jpeg" ||
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "png"
+  ) {
+    callback(null, true);
+  } else {
+    callback(null, false);
+  }
+};
+
+module.exports = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 2048 * 2048 * 15,
+  },
+});
