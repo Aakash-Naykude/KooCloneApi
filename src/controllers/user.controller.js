@@ -56,7 +56,7 @@ router.patch("/:id", upload.single("profile_pic"), async (req, res) => {
         username: req.body.username,
         email: req.body.email,
         mobilenumber: req.body.mobilenumber,
-        profile_pic: req.file.path,
+        profile_pic: req.body.profile_pic,
       },
       {
         new: true,
@@ -64,7 +64,7 @@ router.patch("/:id", upload.single("profile_pic"), async (req, res) => {
     )
       .lean()
       .exec();
-      console.log(profpic);
+    console.log(profpic);
     res.status(201).send(profpic);
   } catch (e) {
     res.status(500).json({ message: e.message, status: "Failed" });
