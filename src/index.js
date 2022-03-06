@@ -6,8 +6,8 @@ app.use(express.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
-    parameterLimit: 100000,
-    limit: "500mb",
+    parameterLimit: 1000000,
+    limit: "5000mb",
   })
 );
 app.use(cors());
