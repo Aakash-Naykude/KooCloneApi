@@ -1,8 +1,16 @@
 const express = require("express");
 const cors = require("cors");
+var bodyParser = require("body-parser");
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    parameterLimit: 100000,
+    limit: "50mb",
+  })
+);
+app.use(cors());
 const userController = require("./controllers/user.controller");
 app.use("/user", userController);
 
