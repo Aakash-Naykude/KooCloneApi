@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch("/:id", upload.single("profile_pic"), async (req, res) => {
+router.patch("/:id", async (req, res) => {
   try {
     const profpic = await Users.findByIdAndUpdate(
       req.params.id,
