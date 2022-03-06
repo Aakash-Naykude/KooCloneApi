@@ -7,7 +7,7 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
     parameterLimit: 100000,
-    limit: "50mb",
+    limit: "500mb",
   })
 );
 app.use(cors());

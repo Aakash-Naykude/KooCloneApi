@@ -20,6 +20,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 router.post("/", async (req, res) => {
+  //console.log(req.body);
   try {
     const ucreate = await Postdata.create(req.body);
 
