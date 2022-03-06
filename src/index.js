@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
-    parameterLimit: 1000000,
+    parameterLimit: 100000,
     limit: "5000mb",
   })
 );
